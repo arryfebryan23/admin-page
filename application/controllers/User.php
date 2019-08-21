@@ -18,4 +18,14 @@ class User extends CI_Controller
 
         $this->load->view('templates/template', $data);
     }
+
+    public function edit()
+    {
+        $data['title'] = 'My Profile';
+        $data['page'] = 'user/edit';
+
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/template', $data);
+    }
 }
