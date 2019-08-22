@@ -29,4 +29,13 @@ class User extends CI_Controller
 
         $this->load->view('templates/template', $data);
     }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
+        redirect('auth');
+    }
 }

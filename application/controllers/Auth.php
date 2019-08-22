@@ -7,12 +7,9 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
         if ($this->session->userdata('email')) {
             redirect('user');
-        } else {
-            redirect('auth');
-        };
+        }
     }
 
     public function index()
@@ -108,15 +105,6 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
             redirect('auth');
         }
-    }
-
-    public function logout()
-    {
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
-
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
-        redirect('auth');
     }
 
     public function blocked()
